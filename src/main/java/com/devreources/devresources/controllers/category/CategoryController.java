@@ -1,4 +1,4 @@
-package com.devreources.devresources.controllers;
+package com.devreources.devresources.controllers.category;
 
 import com.devreources.devresources.models.Category;
 import com.devreources.devresources.repositories.CategoryRepository;
