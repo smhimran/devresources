@@ -2,6 +2,7 @@ package com.devreources.devresources.security.filters;
 
 import com.devreources.devresources.security.CustomUserDetailsService;
 import com.devreources.devresources.security.utils.JwtUtil;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,7 +34,13 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Token ")) {
             token = authorizationHeader.split(" ")[1];
-            username = jwtUtil.extractUsername(token);
+            try {
+                username = jwtUtil.extractUsername(token);
+            } catch (JwtException e) {
+                response.setStatus(401);
+                response.getWriter().write("Invalid token!");
+                return;
+            }
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
