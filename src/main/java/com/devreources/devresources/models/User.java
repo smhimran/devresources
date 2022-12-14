@@ -31,4 +31,8 @@ public class User {
 
     @JsonIgnore
     private String password;
+
+    private boolean admin;
+
+    private boolean moderator;
 }
