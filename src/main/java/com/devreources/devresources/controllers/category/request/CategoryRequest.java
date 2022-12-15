@@ -1,6 +1,6 @@
-package com.devreources.devresources.controllers.category;
+package com.devreources.devresources.controllers.category.request;
 
-public class CatergoryRequest {
+public class CategoryRequest {
     private String title;
 
     public String getTitle() {
